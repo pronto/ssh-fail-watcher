@@ -1,4 +1,9 @@
+NOTE: This code does NOT currently work to create: http://vps2.pronto185.com/newfail
+...but it will at some point... ^.^
+
 currently only idea/thought process
+
+
 a) central config file, config.ini
 b) dirs for things
     eg:
