@@ -1,0 +1,31 @@
+currently only idea/thought process
+a) central config file, config.ini
+b) dirs for things
+    eg:
+    flask/, logs/, and scanner/
+    have it more or less be what it is now
+
+c) collect-data.py:
+    run every <x time> (i do every hour)
+    this script:
+        if sees config[datafile_prev]:
+           loads it for comparisoin
+            sets compare to 1
+        parses auth.log
+            ip=new
+                make new dict:
+                    {'IP': '118.220.173.248', 'attempts': 1, 'geo': 'Korea, Republic of', 'IPCHECK': None, 'RDNS': None, 'age':1}
+                    if scan = on
+                        do port scan, save in another dict that gets dumps seprately
+                        get ports to scan from config.ini
+                        maybe use python-namp? why re-invent the wheel
+                        if nmap, have config.ini option for what nmap flags?
+
+          ip=old 
+                'attempts'+=1
+
+          
+          ip
+dump the dict
+
+
