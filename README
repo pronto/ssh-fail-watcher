@@ -1,6 +1,16 @@
 NOTE: This code does NOT currently work to create: http://vps2.pronto185.com/newfail
 ...but it will at some point... ^.^
 
+...also, a log file that shows changes in new attempts/ports open close,etc..
+    maybe format like:
+        NEW IP: <ip> <rdns> <good/bad rdns?> <open ports>
+        ATTEMPTS NEW <ip> New:<#of of new> Total:<total>
+        PORTS CLOSED:<ip> <list of ports that were open last check, now closed>
+        PORTS OPENED:<ip> <list of ports that were closed lask check, now open>
+        RDNS CHANGE: <rdns changed?>
+        
+   do itas a funciont, something like def log(type, ip, rdns/data stuff?S).
+
 currently only idea/thought process
 
 
