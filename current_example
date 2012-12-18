@@ -1,43 +1,43 @@
- ./collect-data.py 
- Section: data-collector
-   Options: ['removeresultsunder', 'everylogfile', 'dnslookup', 'ignoreyourself', 'portstoscan', 'rootdir', 'auth_file', 'updateever', 'datafile', 'portscan', 'log_dir_script', 'portscanlimit', 'geoipfile', 'use_geoip', 'datafile_prev']
-     removeresultsunder = 200
-       everylogfile = yes
-         dnslookup = yes
-           ignoreyourself = pronto
-             portstoscan = 22,80,443,2082,2083,8080,8880,8443,10000
-               rootdir = /home/pronto/git/ssh-fail
-                 auth_file = auth.log
-                   updateever = 10
-                     datafile = scanner/current.p
-                       portscan = yes
-                         log_dir_script = logs/
-                           portscanlimit = 99
-                             geoipfile = scanner/GeoLiteCity.dat
-                               use_geoip = yes
-                                 datafile_prev = scanner/prev.p
+# ./collect-data.py 
+Section: data-collector
+  Options: ['removeresultsunder', 'everylogfile', 'dnslookup', 'ignoreyourself', 'portstoscan', 'rootdir', 'auth_file', 'updateever', 'datafile', 'portscan', 'log_dir_script', 'portscanlimit', 'geoipfile', 'use_geoip', 'datafile_prev']
+  removeresultsunder = 200
+  everylogfile = yes
+  dnslookup = yes
+  ignoreyourself = pronto
+  portstoscan = 22,80,443,2082,2083,8080,8880,8443,10000
+  rootdir = /home/pronto/git/ssh-fail
+  auth_file = auth.log
+  updateever = 10
+  datafile = scanner/current.p
+  portscan = yes
+  log_dir_script = logs/
+  portscanlimit = 99
+  geoipfile = scanner/GeoLiteCity.dat
+  use_geoip = yes
+  datafile_prev = scanner/prev.p
 
 
-                                 {'IP': '75.101.142.201', 'attempts': 10929}
-                                 {'IP': '118.220.173.248', 'attempts': 5628}
-                                 {'IP': '174.98.137.42', 'attempts': 3507}
-                                 {'IP': '222.100.48.14', 'attempts': 3045}
-                                 {'IP': '198.101.145.249', 'attempts': 2646}
-                                 {'IP': '76.21.11.37', 'attempts': 1968}
-                                 {'IP': '220.173.136.52', 'attempts': 1665}
-                                 {'IP': '101.44.1.134', 'attempts': 794}
-                                 {'IP': '101.44.1.136', 'attempts': 704}
-                                 {'IP': '216.230.144.226', 'attempts': 687}
-                                 {'IP': '58.225.75.228', 'attempts': 643}
-                                 {'IP': '119.188.7.201', 'attempts': 579}
-                                 {'IP': '200.110.82.133', 'attempts': 558}
-                                 {'IP': '218.240.33.173', 'attempts': 527}
-                                 {'IP': '60.195.252.229', 'attempts': 492}
-                                 {'IP': '122.225.107.98', 'attempts': 454}
-                                 {'IP': '81.176.227.5', 'attempts': 357}
-                                 {'IP': '125.136.130.18', 'attempts': 323}
-                                 {'IP': '82.165.140.175', 'attempts': 310}
-                                 {'IP': '211.189.132.160', 'attempts': 212}
-                                 {'IP': '118.102.181.4', 'attempts': 212}
-                                 {'IP': '67.23.97.46', 'attempts': 208}
+{'IP': '75.101.142.201', 'attempts': 10929}
+{'IP': '118.220.173.248', 'attempts': 5628}
+{'IP': '174.98.137.42', 'attempts': 3507}
+{'IP': '222.100.48.14', 'attempts': 3045}
+{'IP': '198.101.145.249', 'attempts': 2646}
+{'IP': '76.21.11.37', 'attempts': 1968}
+{'IP': '220.173.136.52', 'attempts': 1665}
+{'IP': '101.44.1.134', 'attempts': 794}
+{'IP': '101.44.1.136', 'attempts': 704}
+{'IP': '216.230.144.226', 'attempts': 687}
+{'IP': '58.225.75.228', 'attempts': 643}
+{'IP': '119.188.7.201', 'attempts': 579}
+{'IP': '200.110.82.133', 'attempts': 558}
+{'IP': '218.240.33.173', 'attempts': 527}
+{'IP': '60.195.252.229', 'attempts': 492}
+{'IP': '122.225.107.98', 'attempts': 454}
+{'IP': '81.176.227.5', 'attempts': 357}
+{'IP': '125.136.130.18', 'attempts': 323}
+{'IP': '82.165.140.175', 'attempts': 310}
+{'IP': '211.189.132.160', 'attempts': 212}
+{'IP': '118.102.181.4', 'attempts': 212}
+{'IP': '67.23.97.46', 'attempts': 208}
 
