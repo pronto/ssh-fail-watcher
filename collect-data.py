@@ -48,6 +48,13 @@ def port_check(address, port):
         return True
     except:
         return False
+if parser.get("data-collector", "use_geoip") == "yes":
+    try:
+        gi = GeoIP.open(parser.get("data-collector", "rootdir") + parser.get("data-collector", "geoipfile"),GeoIP.GEOIP_STANDARD)
+    except:
+        print "Geo ip file is not there?!"
+        raise
+        sys.exit()
 
 #get which auth.log files to use
 #eg ['/var/log/auth.log', '/var/log/auth.log.1', '/var/log/auth.log.4.gz', '/var/log/auth.log.3.gz', '/var/log/auth.log.2.gz']
@@ -74,8 +81,8 @@ for afile in auth_files():
                     try:
                         index = get_index(ip_dict, 'IP', ip[0])
                         ip_dict[index]['attempts'] += 1
-                        #if parser.get("data-collector", "use_geoip") ==  "yes":
-                        #    ip_dict[index]['geo'] = gi.record_by_addr(ip[0])['country_name']
+                        if parser.get("data-collector", "use_geoip") ==  "yes":
+                            ip_dict[index]['geo'] = gi.record_by_addr(ip[0])['country_name']
                     except:
                         ip_dict.append({"IP": ip[0], "attempts": 1})
     except:
