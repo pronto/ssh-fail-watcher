@@ -2,7 +2,6 @@
 from ConfigParser import SafeConfigParser
 import glob
 import codecs
-import json
 import os
 import sys
 import re
@@ -12,17 +11,11 @@ import GeoIP
 import cPickle
 import shutil
 import operator
+from random import choice
 ignore_ip = ['75.101.142.201', '198.101.145.249', '76.21.11.37']
 
 parser =  SafeConfigParser()
 parser.read('config.ini')
-for section_name in parser.sections():
-    print 'Section:', section_name
-    print '  Options:', parser.options(section_name)
-    for name, value in parser.items(section_name):
-        print '  %s = %s' % (name, value)
-    print
-    print
 
 def openfile(logfile):
     if 'gz' in logfile:
@@ -34,12 +27,14 @@ def openfile(logfile):
 def get_index(seq, attribute, value):
     return next(index for (index, d) in enumerate(seq) if d[attribute] == value)
 
+
 def ipcheck(ip,dns):
     dns_ip=socket.gethostbyname_ex(dns)[2]
     if ip not in dns_ip:
         return "IP: "+ dns_ip[0]
     else:
         return "good"
+
 def port_check(address, port):
     s = socket.socket()
     s.settimeout(1)
@@ -48,6 +43,8 @@ def port_check(address, port):
         return True
     except:
         return False
+
+
 if parser.get("data-collector", "use_geoip") == "yes":
     try:
         gi = GeoIP.open(parser.get("data-collector", "rootdir") + parser.get("data-collector", "geoipfile"),GeoIP.GEOIP_STANDARD)
@@ -55,6 +52,8 @@ if parser.get("data-collector", "use_geoip") == "yes":
         print "Geo ip file is not there?!"
         raise
         sys.exit()
+
+
 
 #get which auth.log files to use
 #eg ['/var/log/auth.log', '/var/log/auth.log.1', '/var/log/auth.log.4.gz', '/var/log/auth.log.3.gz', '/var/log/auth.log.2.gz']
@@ -103,6 +102,31 @@ for a in del_attempts:
 #and GONE!
 
 
+#port scanning...I SHOULD FORK THIS o_o
+#debug for protscan, pseudo open/closed
+def fakescan(address, port):
+   return choice([True,False,False])
+
+if parser.get("data-collector", "portscan") == "yes":
+    portlist=parser.get("data-collector","portstoscan").split(',')
+    for ipline in ip_dict:
+        index = get_index(ip_dict,'IP',ipline['IP'])
+        for port in portlist:
+            ip_dict[index]['Port'+port]=fakescan(ipline['IP'],port)
+
+
 #debug part--- prints out ip_dict
+
 for a in ip_dict:
     print a
+
+
+for section_name in parser.sections():
+    print 'Section:', section_name
+    print '  Options:', parser.options(section_name)
+    for name, value in parser.items(section_name):
+        print '  %s = %s' % (name, value)
+    print
+    print
+
+

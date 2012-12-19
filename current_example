@@ -1,11 +1,33 @@
-# ./collect-data.py 
+# ./collect-data.py
+{'Port2083': False, 'Port2082': False, 'IP': '75.101.142.201', 'Port80': True, 'Port8080': False, 'attempts': 10929, 'Port443': True, 'geo': 'United States', 'Port22': False}
+{'Port2083': False, 'Port2082': False, 'IP': '118.220.173.248', 'Port80': False, 'Port8080': False, 'attempts': 5628, 'Port443': False, 'geo': 'Korea, Republic of', 'Port22': False}
+{'Port2083': False, 'Port2082': False, 'IP': '174.98.137.42', 'Port80': True, 'Port8080': False, 'attempts': 3507, 'Port443': True, 'geo': 'United States', 'Port22': True}
+{'Port2083': False, 'Port2082': False, 'IP': '222.100.48.14', 'Port80': True, 'Port8080': False, 'attempts': 3045, 'Port443': True, 'geo': 'Korea, Republic of', 'Port22': True}
+{'Port2083': True, 'Port2082': True, 'IP': '198.101.145.249', 'Port80': False, 'Port8080': False, 'attempts': 2646, 'Port443': False, 'geo': 'United States', 'Port22': False}
+{'Port2083': True, 'Port2082': False, 'IP': '76.21.11.37', 'Port80': False, 'Port8080': False, 'attempts': 1968, 'Port443': False, 'geo': 'United States', 'Port22': False}
+{'Port2083': False, 'Port2082': False, 'IP': '220.173.136.52', 'Port80': False, 'Port8080': True, 'attempts': 1665, 'Port443': False, 'geo': 'China', 'Port22': True}
+{'Port2083': False, 'Port2082': False, 'IP': '101.44.1.134', 'Port80': True, 'Port8080': False, 'attempts': 794, 'Port443': False, 'geo': 'China', 'Port22': False}
+{'Port2083': False, 'Port2082': False, 'IP': '101.44.1.136', 'Port80': True, 'Port8080': False, 'attempts': 704, 'Port443': False, 'geo': 'China', 'Port22': False}
+{'Port2083': False, 'Port2082': False, 'IP': '216.230.144.226', 'Port80': True, 'Port8080': False, 'attempts': 687, 'Port443': True, 'geo': 'Guatemala', 'Port22': False}
+{'Port2083': True, 'Port2082': False, 'IP': '58.225.75.228', 'Port80': False, 'Port8080': False, 'attempts': 643, 'Port443': False, 'geo': 'Korea, Republic of', 'Port22': False}
+{'Port2083': False, 'Port2082': False, 'IP': '119.188.7.201', 'Port80': True, 'Port8080': False, 'attempts': 579, 'Port443': False, 'geo': 'China', 'Port22': True}
+{'Port2083': False, 'Port2082': False, 'IP': '200.110.82.133', 'Port80': False, 'Port8080': True, 'attempts': 558, 'Port443': True, 'geo': 'Ecuador', 'Port22': True}
+{'Port2083': True, 'Port2082': True, 'IP': '218.240.33.173', 'Port80': True, 'Port8080': False, 'attempts': 527, 'Port443': False, 'geo': 'China', 'Port22': False}
+{'Port2083': True, 'Port2082': True, 'IP': '60.195.252.229', 'Port80': True, 'Port8080': True, 'attempts': 492, 'Port443': False, 'geo': 'China', 'Port22': False}
+{'Port2083': True, 'Port2082': False, 'IP': '122.225.107.98', 'Port80': False, 'Port8080': False, 'attempts': 454, 'Port443': True, 'geo': 'China', 'Port22': True}
+{'Port2083': False, 'Port2082': False, 'IP': '81.176.227.5', 'Port80': False, 'Port8080': False, 'attempts': 357, 'Port443': False, 'geo': 'Russian Federation', 'Port22': True}
+{'Port2083': False, 'Port2082': False, 'IP': '125.136.130.18', 'Port80': False, 'Port8080': False, 'attempts': 323, 'Port443': False, 'geo': 'Korea, Republic of', 'Port22': False}
+{'Port2083': False, 'Port2082': False, 'IP': '82.165.140.175', 'Port80': False, 'Port8080': False, 'attempts': 310, 'Port443': True, 'geo': 'Germany', 'Port22': True}
+{'Port2083': True, 'Port2082': False, 'IP': '211.189.132.160', 'Port80': False, 'Port8080': True, 'attempts': 212, 'Port443': False, 'geo': 'Korea, Republic of', 'Port22': False}
+{'Port2083': True, 'Port2082': True, 'IP': '118.102.181.4', 'Port80': False, 'Port8080': False, 'attempts': 212, 'Port443': False, 'geo': 'India', 'Port22': False}
+{'Port2083': True, 'Port2082': True, 'IP': '67.23.97.46', 'Port80': True, 'Port8080': False, 'attempts': 208, 'Port443': False, 'geo': 'United States', 'Port22': False}
 Section: data-collector
-  Options: ['removeresultsunder', 'everylogfile', 'dnslookup', 'ignoreyourself', 'portstoscan', 'rootdir', 'auth_file', 'updateever', 'datafile', 'portscan', 'log_dir_script', 'portscanlimit', 'geoipfile', 'use_geoip', 'datafile_prev']
+  Options: ['removeresultsunder', 'everylogfile', 'dnslookup', 'ignoreyourself', 'portstoscan', 'rootdir', 'auth_file', 'updateever', 'datafile', 'portscan', 'log_dir_script', 'portscanlimit', 'geoipfile', 'use_geoip', 'datafile_prev', 'debug']
   removeresultsunder = 200
   everylogfile = yes
   dnslookup = yes
   ignoreyourself = pronto
-  portstoscan = 22,80,443,2082,2083,8080,8880,8443,10000
+  portstoscan = 22,80,443,2082,2083,8080
   rootdir = /home/pronto/git/ssh-fail/
   auth_file = auth.log
   updateever = 10
@@ -16,28 +38,5 @@ Section: data-collector
   geoipfile = scanner/GeoLiteCity.dat
   use_geoip = yes
   datafile_prev = scanner/prev.p
-
-
-{'IP': '75.101.142.201', 'attempts': 10929, 'geo': 'United States'}
-{'IP': '118.220.173.248', 'attempts': 5628, 'geo': 'Korea, Republic of'}
-{'IP': '174.98.137.42', 'attempts': 3507, 'geo': 'United States'}
-{'IP': '222.100.48.14', 'attempts': 3045, 'geo': 'Korea, Republic of'}
-{'IP': '198.101.145.249', 'attempts': 2646, 'geo': 'United States'}
-{'IP': '76.21.11.37', 'attempts': 1968, 'geo': 'United States'}
-{'IP': '220.173.136.52', 'attempts': 1665, 'geo': 'China'}
-{'IP': '101.44.1.134', 'attempts': 794, 'geo': 'China'}
-{'IP': '101.44.1.136', 'attempts': 704, 'geo': 'China'}
-{'IP': '216.230.144.226', 'attempts': 687, 'geo': 'Guatemala'}
-{'IP': '58.225.75.228', 'attempts': 643, 'geo': 'Korea, Republic of'}
-{'IP': '119.188.7.201', 'attempts': 579, 'geo': 'China'}
-{'IP': '200.110.82.133', 'attempts': 558, 'geo': 'Ecuador'}
-{'IP': '218.240.33.173', 'attempts': 527, 'geo': 'China'}
-{'IP': '60.195.252.229', 'attempts': 492, 'geo': 'China'}
-{'IP': '122.225.107.98', 'attempts': 454, 'geo': 'China'}
-{'IP': '81.176.227.5', 'attempts': 357, 'geo': 'Russian Federation'}
-{'IP': '125.136.130.18', 'attempts': 323, 'geo': 'Korea, Republic of'}
-{'IP': '82.165.140.175', 'attempts': 310, 'geo': 'Germany'}
-{'IP': '211.189.132.160', 'attempts': 212, 'geo': 'Korea, Republic of'}
-{'IP': '118.102.181.4', 'attempts': 212, 'geo': 'India'}
-{'IP': '67.23.97.46', 'attempts': 208, 'geo': 'United States'}
+  debug = yes
 
