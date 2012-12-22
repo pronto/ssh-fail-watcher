@@ -13,9 +13,12 @@ import shutil
 import operator
 from random import choice
 ignore_ip = ['75.101.142.201', '198.101.145.249', '76.21.11.37']
-
 parser =  SafeConfigParser()
 parser.read('config.ini')
+newfilepath=parser.get("data-collector","rootdir")+parser.get("data-collector","datafile")
+oldfilepath=parser.get("data-collector","rootdir")+parser.get("data-collector","datafile_prev")
+shutil.copy2(newfilepath,oldfilepath)
+
 
 def openfile(logfile):
     if 'gz' in logfile:
@@ -79,7 +82,7 @@ for afile in auth_files():
                 if ip:
                     try:
                         index = get_index(ip_dict, 'IP', ip[0])
-                        ip_dict[index]['attempts'] += 1
+                        ip_dict[index]['attempts'] += choice([1,1,1,1,1,1,2,2,2,2,3,3,3,1,1,1])
                         if parser.get("data-collector", "use_geoip") ==  "yes":
                             ip_dict[index]['geo'] = gi.record_by_addr(ip[0])['country_name']
                     except:
@@ -102,8 +105,7 @@ for a in del_attempts:
 #and GONE!
 
 
-#port scanning...I SHOULD FORK THIS o_o
-#debug for protscan, pseudo open/closed
+#going to toss the port scaning part in another script
 def fakescan(address, port):
    return choice([True,False,False])
 
@@ -114,11 +116,25 @@ if parser.get("data-collector", "portscan") == "yes":
         for port in portlist:
             ip_dict[index]['Port'+port]=fakescan(ipline['IP'],port)
 
+#compare the lists for new stuff
+old_list=cPickle.load(open(oldfilepath, "rb"))
+for a in ip_dict:
+    try:
+        index_old=get_index(old_list,'IP',a['IP'])
+        index_new=get_index(ip_dict,'IP',a['IP'])
+        if ip_dict[index_new]['IP'] == old_list[index_old]['IP']:
+            diff = ip_dict[index_new]['attempts']-old_list[index_old]['attempts']
+            ip_dict[index_new]['new']=diff
+        else:
+            ip_dict[index_new]['new']=0
+    except:
+        ip_dict[index_new]['new']=0
+
 
 #debug part--- prints out ip_dict
 
 for a in ip_dict:
-    print a
+    print a['IP'] + "\t" + str(a['attempts']) + "\t" + str(a['new'])
 
 
 for section_name in parser.sections():
@@ -130,3 +146,6 @@ for section_name in parser.sections():
     print
 
 
+
+#store the data
+cPickle.dump(ip_dict,open(newfilepath,"wb"))

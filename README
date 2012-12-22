@@ -43,4 +43,8 @@ c) collect-data.py:
           ip
 dump the dict
 
-
+#######################################
+notes kinda to self:
+    list of functions that are used in more then one script:
+        get_index()
+        a
