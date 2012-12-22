@@ -61,6 +61,8 @@ def writelog(logtype,data):
         logfile=open(parser.get("data-collector", "rootdir")+parser.get("data-collector", "logfile"), "a")
         if logtype == "IP_NEW":
             logfile.write("New IP: "+data+"\n")
+        elif logtype == "NEW_ATTEMPTS":
+            logfile.write("New Attempts: "+data+"\n")
         else:
             logfile.write("Blarg: "+data+"\n")
         logfile.close()
@@ -125,25 +127,30 @@ if parser.get("data-collector", "portscan") == "yes":
             ip_dict[index]['Port'+port]=fakescan(ipline['IP'],port)
 
 #compare the lists for new stuff
-old_list=cPickle.load(open(oldfilepath, "rb"))
-for a in ip_dict:
-    try:
-        index_old=get_index(old_list,'IP',a['IP'])
-        index_new=get_index(ip_dict,'IP',a['IP'])
-        if ip_dict[index_new]['IP'] == old_list[index_old]['IP']:
-            diff = ip_dict[index_new]['attempts']-old_list[index_old]['attempts']
-            ip_dict[index_new]['new']=diff
-        else:
+try:
+    old_list=cPickle.load(open(oldfilepath, "rb"))
+    for a in ip_dict:
+        try:
+            index_old=get_index(old_list,'IP',a['IP'])
+            index_new=get_index(ip_dict,'IP',a['IP'])
+            if ip_dict[index_new]['IP'] == old_list[index_old]['IP']:
+                diff = ip_dict[index_new]['attempts']-old_list[index_old]['attempts']
+                ip_dict[index_new]['new']=diff
+                writelog("NEW_ATTEMPTS",a['IP'] + " has " + str(diff) + " new attempts")
+            else:
+                ip_dict[index_new]['new']=0
+        except:
             ip_dict[index_new]['new']=0
-    except:
-        ip_dict[index_new]['new']=0
-
+except:
+    print "no old list there"
 
 #debug part--- prints out ip_dict
 
 for a in ip_dict:
-    print a['IP'] + "\t" + str(a['attempts']) + "\t" + str(a['new'])
-
+    try:
+        print a['IP'] + "\t" + str(a['attempts']) + "\t" + str(a['new'])
+    except:
+        print a['IP'] + "\t" + str(a['attempts'])
 
 for section_name in parser.sections():
     print 'Section:', section_name
