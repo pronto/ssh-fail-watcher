@@ -56,7 +56,14 @@ if parser.get("data-collector", "use_geoip") == "yes":
         raise
         sys.exit()
 
-
+def writelog(logtype,data):
+    if parser.get("data-collector","log_changes") == 'yes':
+        logfile=open(parser.get("data-collector", "rootdir")+parser.get("data-collector", "logfile"), "a")
+        if logtype == "IP_NEW":
+            logfile.write("New IP: "+data+"\n")
+        else:
+            logfile.write("Blarg: "+data+"\n")
+        logfile.close()
 
 #get which auth.log files to use
 #eg ['/var/log/auth.log', '/var/log/auth.log.1', '/var/log/auth.log.4.gz', '/var/log/auth.log.3.gz', '/var/log/auth.log.2.gz']
@@ -87,6 +94,7 @@ for afile in auth_files():
                             ip_dict[index]['geo'] = gi.record_by_addr(ip[0])['country_name']
                     except:
                         ip_dict.append({"IP": ip[0], "attempts": 1})
+                        writelog("IP_NEW",ip[0])
     except:
         print "please run as root....i know running things as root sucks, but auth.log needs it"
         raise
