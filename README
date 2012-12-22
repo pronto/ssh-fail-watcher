@@ -10,6 +10,9 @@ NOTE: This code does NOT currently work to create: http://vps2.pronto185.com/new
         RDNS CHANGE: <rdns changed?>
         
    do itas a funciont, something like def log(type, ip, rdns/data stuff?S).
+def logadd(Type,data):
+    #types: IP_NEW, NEW_ATTEMPTS, PORT_OPENED, PORT_CLOSED
+
 
 currently only idea/thought process
 
